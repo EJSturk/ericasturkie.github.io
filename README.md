@@ -1,6 +1,6 @@
 # ericasturkie.com
 
-The website fueled by this repo is personal website showcasing my professional background as a Technical Writer and Knowledge Management Specialist. Built and maintained as a static site hosted on GitHub Pages.
+The website fueled by this repo is a personal website showcasing my professional background as a Technical Writer and Knowledge Management Specialist. Built and maintained as a static site hosted on GitHub Pages.
 
 🌐 **Live site:** [ericasturkie.com](https://ericasturkie.com)
 
@@ -8,7 +8,7 @@ The website fueled by this repo is personal website showcasing my professional b
 
 ## About
 
-This site serves as an extension of my resume — a place where visitors can learn more about my career journey, skills, and professional accomplishments than a single PDF file allows. It also doubles as a hands-on way for me to build GitHub experience relevant to my current role and write about my experiences along the way.
+This site serves as an extension of my resume; a place where visitors can learn more about my career journey, skills, and professional accomplishments than a single PDF file allows. It also doubles as a hands-on way for me to build GitHub experience relevant to my current role and write about my experiences along the way.
 
 ---
 
