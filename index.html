@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Erica J. Sturkie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf7f2;
+      --warm-white: #fff9f3;
+      --clay: #c97b5a;
+      --clay-light: #e8a98a;
+      --clay-dark: #a05a3a;
+      --sage: #7a9e8e;
+      --sage-light: #a8c4b8;
+      --ink: #2c2420;
+      --ink-soft: #5c4e48;
+      --ink-muted: #9c8880;
+      --border: #e8ddd6;
+      --section-bg: #f5ede6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--clay); }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      padding-top: 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(160deg, #f0e4d8 0%, var(--section-bg) 100%);
+      z-index: 0;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--clay);
+    }
+
+    .hero-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--ink-soft);
+      font-weight: 400;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.55s forwards;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.85s forwards;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 2rem;
+      background: var(--clay);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--clay-dark); transform: translateY(-2px); }
+
+    .btn-secondary {
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: var(--clay); color: var(--clay); transform: translateY(-2px); }
+
+    .hero-right {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+      padding: 0 2rem 0 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-graphic {
+      position: relative;
+      width: 360px;
+      height: 460px;
+    }
+
+    .hero-card {
+      position: absolute;
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 20px 60px rgba(44,36,32,0.08);
+      opacity: 0;
+      animation: floatIn 0.9s ease forwards;
+    }
+
+    .card-main {
+      width: 300px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: 1s;
+      border: 1px solid var(--border);
+      z-index: 3;
+    }
+
+    .card-accent-1 {
+      width: 180px;
+      top: 0; right: -20px;
+      background: var(--section-bg);
+      border: 1px solid var(--border);
+      animation-delay: 1.2s;
+      z-index: 2;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .card-accent-2 {
+      width: 160px;
+      bottom: 20px; left: -20px;
+      background: var(--sage-light);
+      border: none;
+      animation-delay: 1.4s;
+      z-index: 2;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+    }
+
+    .card-value.accent { color: var(--clay); }
+    .card-value.sage { color: #3d6e5e; }
+
+    .card-main .card-label { margin-bottom: 0.8rem; }
+    .card-main .skills-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .skills-list li {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      background: var(--section-bg);
+      border-radius: 20px;
+      color: var(--ink-soft);
+      border: 1px solid var(--border);
+    }
+
+    .hero-location {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ---- SECTION SHARED ---- */
+    section {
+      padding: 6rem 5rem;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    /* ---- ABOUT ---- */
+    #about {
+      background: white;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      opacity: 0;
+      animation: floatIn 1s 0.6s forwards;
+      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.9;
+      margin-bottom: 1.4rem;
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .highlight-item {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--cream);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .highlight-item:hover { border-color: var(--clay-light); transform: translateY(-2px); }
+
+    .highlight-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-title {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-desc {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* ---- EXPERIENCE ---- */
+    #experience {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      padding-left: 2.5rem;
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--clay);
+      border: 2px solid var(--cream);
+    }
+
+    .timeline-dot.sage { background: var(--sage); }
+
+    .timeline-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .timeline-company {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-role {
+      font-size: 0.9rem;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-sub {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .timeline-sub-role {
+      font-size: 0.85rem;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .timeline-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .timeline-bullets li {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .timeline-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--clay-light);
+      font-size: 0.8rem;
+    }
+
+    /* ---- SKILLS ---- */
+    #skills {
+      background: white;
+      border-top: 1px solid var(--border);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      padding: 1.8rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--clay-light);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(201,123,90,0.08);
+    }
+
+    .skill-card-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+
+    .skill-card-title {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-card-desc {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    /* ---- EDUCATION ---- */
+    #education {
+      background: var(--section-bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+    }
+
+    .edu-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .edu-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(44,36,32,0.08); }
+
+    .edu-degree {
+      font-family: 'Lora', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-school {
+      font-size: 0.95rem;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-note {
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    .cert-section { margin-top: 3rem; }
+
+    .cert-title {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .cert-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .cert-badge {
+      width: 36px; height: 36px;
+      background: var(--clay);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .cert-info h4 {
+      font-size: 0.9rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .cert-info p { font-size: 0.75rem; color: var(--ink-muted); }
+
+    /* ---- BLOG / EXTRAS ---- */
+    #writing {
+      background: white;
+      border-top: 1px solid var(--border);
+    }
+
+    .writing-intro {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 600px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .writing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .writing-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: var(--cream);
+    }
+
+    .writing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 50px rgba(44,36,32,0.09); }
+
+    .writing-card-top {
+      padding: 2rem;
+    }
+
+    .writing-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 500;
+      background: rgba(201,123,90,0.1);
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .writing-card-title {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 0.7rem;
+    }
+
+    .writing-card-desc {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+    }
+
+    .writing-card-footer {
+      padding: 1rem 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .coming-soon-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      background: var(--section-bg);
+      border-radius: 20px;
+      color: var(--ink-muted);
+      border: 1px solid var(--border);
+      margin-left: auto;
+    }
+
+    /* ---- CONTACT ---- */
+    #contact {
+      background: var(--ink);
+      color: white;
+      text-align: center;
+      padding: 6rem 3rem;
+    }
+
+    #contact .section-eyebrow { color: var(--clay-light); }
+    #contact .section-title { color: white; }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      margin: 1rem auto 3rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-link.email {
+      background: var(--clay);
+      color: white;
+    }
+
+    .contact-link.email:hover { background: var(--clay-light); transform: translateY(-2px); }
+
+    .contact-link.linkedin {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .contact-link.linkedin:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.animate {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .reveal.animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      section { padding: 5rem 2rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 6rem; }
+      .hero-left { padding: 3rem 2rem 2rem; }
+      .hero-right { display: none; }
+      /* hide photo on small screens */
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero-left { padding: 2.5rem 1.5rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Erica J. Sturkie</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-tag">Senior Technical Writer · Knowledge Manager</span>
+      <h1 class="hero-name">Erica J.<br><em>Sturkie</em></h1>
+      <p class="hero-title">Turning complexity into clarity.</p>
+      <p class="hero-bio">I build the systems, docs, and frameworks that help teams work smarter. From ISO accreditation projects to naval ship documentation and automotive assembly line instructions, I thrive where organization meets precision - and where a great document can change everything.</p>
+      <div class="hero-actions">
+        <a href="#experience" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+      </div>
+      <p class="hero-location">📍 Austin, TX</p>
+    </div>
+    <div class="hero-right">
+      <img src="EricaSturkie.png" alt="Erica J. Sturkie" class="hero-photo" />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-header">
+          <span class="section-eyebrow">About Me</span>
+          <h2 class="section-title">Writer. Organizer.<br>Problem-solver.</h2>
+        </div>
+        <p>I'm a Senior Technical Writer and Knowledge Management Professional with over a decade of experience helping organizations communicate complex ideas clearly and maintain the systems that keep teams aligned and accountable.</p>
+        <p>My work spans defense contracting, clean energy startups, big tech, and robotics; industries where precision isn't optional. I love a mature environment, but I'm especially drawn to those where documentation infrastructure does not yet exist and needs to be built from the ground up.</p>
+        <p>Outside of work, I'm a DEFCON regular, a Raspberry Pi tinkerer, and a Python learner. I believe the same curiosity that makes a great hacker makes a great technical writer: always asking why, and never satisfied with "that's just how it's done."</p>
+      </div>
+      <div class="about-highlights reveal">
+        <div class="highlight-item">
+          <div class="highlight-icon">🏗️</div>
+          <div class="highlight-title">I build from zero</div>
+          <div class="highlight-desc">Grew a controlled document library from nothing to 300+ documents in under a year at Infinitum. Created documentation frameworks at Tesla, Infinitum, and Apptronik from scratch.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🎯</div>
+          <div class="highlight-title">I lead with process</div>
+          <div class="highlight-desc">Led ISO/IEC 17025:2017 accreditation with zero audit findings, on time, for Infinitum's Product Test Lab. I design repeatable workflows and systems that hold up under scrutiny.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🤝</div>
+          <div class="highlight-title">I bridge people and systems</div>
+          <div class="highlight-desc">Whether it's onboarding teams to Jira, partnering with engineers, or mentoring junior writers — I make knowledge accessible to everyone.</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🔍</div>
+          <div class="highlight-title">I stay curious</div>
+          <div class="highlight-desc">Annual DEFCON attendee since 2016. Currently studying Python. Built a retro game emulator on a Raspberry Pi. Built this website to showcase my experience. I learn by doing.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Experience</span>
+      <h2 class="section-title">Where I've been,<br>what I've built.</h2>
+    </div>
+    <div class="timeline">
+
+      <!-- Apptronik -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">Oct 2025 – Present</span>
+        </div>
+        <div class="timeline-company">Apptronik</div>
+        <div class="timeline-role">Senior Technical Writer · Austin, TX</div>
+        <ul class="timeline-bullets">
+          <li>Establishing foundational formatting, style, template, and tone standards for hardware-specific documentation. Building the hardware documentation system from the ground up for a fast-moving robotics company.</li>
+        </ul>
+      </div>
+
+      <!-- Infinitum -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">Feb 2024 – Oct 2025</span>
+        </div>
+        <div class="timeline-company">Infinitum</div>
+        <div class="timeline-role">Knowledge Management Specialist & Documentation Specialist · Austin, TX</div>
+        <ul class="timeline-bullets">
+          <li>Served as LQMS Representative, leading the team to ISO/IEC 17025:2017 accreditation within a 6-month window with zero audit observations or non-conformances.</li>
+          <li>Built a Controlled Document Library from scratch using Confluence and Comala; grew it to 300+ controlled documents and expanded its use across multiple teams.</li>
+          <li>Expanded the Articulate LMS company-wide; maintained training records and collaborated with SMEs to author and deploy e-learning courses.</li>
+          <li>Served as Org Admin for the Atlassian instance, managing user access, permissions, and Jira workflows to optimize productivity and metrics reporting.</li>
+        </ul>
+      </div>
+
+      <!-- Tesla -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot sage"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">Oct 2022 – Feb 2024</span>
+        </div>
+        <div class="timeline-company">Tesla · Gigafactory Texas</div>
+        <div class="timeline-role">Technical Writer</div>
+        <ul class="timeline-bullets">
+          <li>Authored all Manufacturing Instructions for manual stations on the Model Y and Cybertruck Drive Unit assembly lines ahead of schedule; attended the Cybertruck Drive Unit factory acceptance test in South Korea.</li>
+          <li>Developed and implemented a new writing sample procedure for the team's interview process, improving candidate evaluation consistency.</li>
+          <li>Mentored junior team members on best practices, standardization, and document processing. Received three SPARC Coin recognitions from external stakeholders.</li>
+        </ul>
+      </div>
+
+      <!-- Meta / EOS -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot sage"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">Mar 2022 – Oct 2022</span>
+        </div>
+        <div class="timeline-company">EOS IT Solutions @ Meta</div>
+        <div class="timeline-role">Senior Technical Writer · Austin, TX (Remote)</div>
+        <ul class="timeline-bullets">
+          <li>Drafted SOPs, work instructions, and guides in collaboration with functional leads and SMEs; maintained QMS documentation for ISO 9001 certification.</li>
+          <li>Reviewed and edited training video productions using Adobe Premiere Pro and Articulate 360; created process flows using LucidChart.</li>
+        </ul>
+      </div>
+
+      <!-- Peraton (2nd) -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot sage"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">Feb 2020 – Mar 2022</span>
+        </div>
+        <div class="timeline-company">Peraton</div>
+        <div class="timeline-role">Mid-Level Project Analyst / Technical Writer II · Austin, TX (Remote)</div>
+        <ul class="timeline-bullets">
+          <li>Managed metrics databases and delivered weekly data reports with charts and graphs to NAVSEA customers; performed daily QA to ensure data integrity.</li>
+          <li>Simultaneously supported 90+ active standards projects, including writing, reviewing, and presenting to the NAVSEA Program Manager for approval and funding.</li>
+          <li>Managed SUBSAFE program documentation tracker and reported metrics regularly to the Program Manager.</li>
+        </ul>
+      </div>
+
+      <!-- DRRAR -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot sage"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">Jan 2018 – Oct 2019</span>
+        </div>
+        <div class="timeline-company">Dan River Region Association of Realtors®</div>
+        <div class="timeline-role">CEO / Association Executive · Danville, VA</div>
+        <ul class="timeline-bullets">
+          <li>Built and launched the organization's website from scratch, implementing SEO strategies that landed it on Google's first page within 1 month of launch.</li>
+          <li>Managed the MLS, monthly e-newsletter, board relations, fiscal oversight, and event planning for the organization.</li>
+        </ul>
+      </div>
+
+      <!-- Peraton (1st) -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot sage"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">Jun 2015 – Dec 2017</span>
+        </div>
+        <div class="timeline-company">Peraton</div>
+        <div class="timeline-role">Project Analyst / Technical Writer I · Herndon, VA</div>
+        <ul class="timeline-bullets">
+          <li>Provided full lifecycle support for 90+ active standards projects involving technical document development, revision, and amendment for NAVSEA.</li>
+          <li>Organized bi-weekly brown bag sessions to build collective team knowledge and share best practices across the group.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Skills</span>
+      <h2 class="section-title">What I bring<br>to the table.</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">📝</div>
+        <div class="skill-card-title">Technical Writing & Documentation</div>
+        <div class="skill-card-desc">Expert in creating manuals, SOPs, work instructions, and controlled documents with a strong command of content style guides and audience-aware communication.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">📊</div>
+        <div class="skill-card-title">Data & Metrics Reporting</div>
+        <div class="skill-card-desc">Extensive experience designing data collection frameworks, maintaining complex Excel databases, and producing charts and dashboards that illustrate team impact.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🧩</div>
+        <div class="skill-card-title">Jira & Confluence (Atlassian)</div>
+        <div class="skill-card-desc">Proficient in building Jira projects, custom workflows, automation rules, and managing Confluence spaces as an Org Admin across multi-team environments.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🎓</div>
+        <div class="skill-card-title">E-Learning & LMS</div>
+        <div class="skill-card-desc">Experienced in developing and deploying e-learning courses using the Articulate suite, managing LMS platforms, and maintaining personnel training records.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">✅</div>
+        <div class="skill-card-title">Document Control & Compliance</div>
+        <div class="skill-card-desc">Deep expertise in ISO/IEC 17025, ISO 9001, and QMS compliance. Experienced in structured document libraries, versioning tools, and audit-ready documentation practices.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🎨</div>
+        <div class="skill-card-title">Adobe Creative Suite</div>
+        <div class="skill-card-desc">Seasoned user of Adobe Illustrator, Photoshop, and Premiere Pro for creating graphics, digital media, and training video productions.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🔁</div>
+        <div class="skill-card-title">Agile & Project Management</div>
+        <div class="skill-card-desc">Certified ScrumMaster with proven ability to juggle large project portfolios with competing priorities, shifting scopes, and cross-functional stakeholder needs.</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🤝</div>
+        <div class="skill-card-title">Stakeholder Collaboration</div>
+        <div class="skill-card-desc">Outstanding interpersonal skills with a track record of building lasting relationships with engineers, executives, subject matter experts, and cross-departmental teams.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Education</span>
+      <h2 class="section-title">Foundations &<br>credentials.</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-degree">Master of Business Administration</div>
+        <div class="edu-school">Western Governors University</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-degree">Bachelor of Arts, English</div>
+        <div class="edu-school">Averett University</div>
+        <div class="edu-note">Valedictorian, <em>summa cum laude</em></div>
+      </div>
+    </div>
+
+    <div class="cert-section reveal">
+      <h3 class="cert-title">Certifications & Personal Development</h3>
+      <div>
+        <div class="cert-card">
+          <div class="cert-badge">CSM</div>
+          <div class="cert-info">
+            <h4>Certified ScrumMaster</h4>
+            <p>Scrum Alliance · Issued Feb 2025 · Expires Feb 2027</p>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge" style="background:var(--sage);">PY</div>
+          <div class="cert-info">
+            <h4>Python Programming</h4>
+            <p>boot.dev · In progress</p>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge" style="background:#555;">🕹️</div>
+          <div class="cert-info">
+            <h4>Retro Gaming Emulator · Raspberry Pi</h4>
+            <p>Hardware, Linux CLI, system config</p>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge" style="background:#222;">🔐</div>
+          <div class="cert-info">
+            <h4>DEFCON Attendee</h4>
+            <p>Annual attendee since DEFCON 24 (2016)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRITING / BLOG -->
+  <section id="writing">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Writing & Insights</span>
+      <h2 class="section-title">Thoughts on craft,<br>process & tools.</h2>
+    </div>
+    <p class="writing-intro reveal">This is my space to share what I've learned — about documentation, knowledge management, tooling, and working across complex organizations. Posts coming soon.</p>
+    <div class="writing-grid">
+      <div class="writing-card reveal">
+        <div class="writing-card-top">
+          <span class="writing-tag">Document Control</span>
+          <h3 class="writing-card-title">What I learned building a document library from zero to 300+ controlled docs</h3>
+          <p class="writing-card-desc">How I approached scope, tooling, and stakeholder buy-in when creating a controlled document library from scratch at a fast-moving startup.</p>
+        </div>
+        <div class="writing-card-footer">📄 Coming soon <span class="coming-soon-badge">Draft</span></div>
+      </div>
+      <div class="writing-card reveal">
+        <div class="writing-card-top">
+          <span class="writing-tag">ISO Compliance</span>
+          <h3 class="writing-card-title">How we got ISO/IEC 17025 accreditation in 6 months with zero findings</h3>
+          <p class="writing-card-desc">A look at the preparation, documentation strategy, and process design that led to a clean audit on the first try.</p>
+        </div>
+        <div class="writing-card-footer">📋 Coming soon <span class="coming-soon-badge">Draft</span></div>
+      </div>
+      <div class="writing-card reveal">
+        <div class="writing-card-top">
+          <span class="writing-tag">Tooling</span>
+          <h3 class="writing-card-title">Jira for non-developers: what I've learned setting it up for hardware teams</h3>
+          <p class="writing-card-desc">Reflections on adapting Jira's software-centric workflows to serve lab, manufacturing, and cross-functional operations teams.</p>
+        </div>
+        <div class="writing-card-footer">⚙️ Coming soon <span class="coming-soon-badge">Draft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <span class="section-eyebrow">Get in Touch</span>
+    <h2 class="section-title" style="margin: 0.5rem 0 0;">Let's connect.</h2>
+    <p class="contact-sub">Whether you're hiring, collaborating, or just want to talk docs — I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#197c6b707a783773376a6d6c6b72707c597e74787075377a7674" class="contact-link email">✉️ <span class="__cf_email__" data-cfemail="fb9e8992989ad591d5888f8e8990929ebb9c969a9297d5989496">[email&#160;protected]</span></a>
+      <a href="https://linkedin.com/in/ericasturkie" class="contact-link linkedin" target="_blank">in LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Erica J. Sturkie · ericasturkie.com
+  </footer>
+
+  <script>
+    // Scroll reveal - only animate if IntersectionObserver is supported
+    if ('IntersectionObserver' in window) {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(el => el.classList.add('animate'));
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => observer.observe(el));
+    }
+  </script>
+</body>
+</html>
